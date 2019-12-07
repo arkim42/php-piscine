@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Calculator</title>
+		<style>
+		
+		</style>
+		<script>
+			var calc, left, right, op;
+			window.onload = function() {
+				calc = document.querySelector("#calc");
+				left = document.querySelector("#left");
+				right = document.querySelector("#right");
+				op = document.querySelector("#op");
+				calc.addEventListener("submit", submit);
+				setInterval("alert('Please, use me...')", 30000)
+			}
+			function numVal(a,b) {
+				return (a == parseInt(a) && a >= 0 && b == parseInt(b) && b >= 0);
+			}
+			
+			function dp(result) {
+				console.log(result);
+				alert(result);
+			}
+			function submit(event) {
+				event.preventDefault();
+				if (!numVal(left.value,right.value)) {
+					alert("Error :(");
+					return false;
+				}
+				var a = Number(left.value);
+				var b = Number(right.value);
+				if (op.value == 'add') {
+					dp(a+b);
+				} else if (op.value == 'sub') {
+					dp(a-b);
+				} else if (op.value == 'mul') {
+					dp(a*b);
+				} else if (op.value == 'div') {
+					if (b === 0) {
+						dp("It's over 9000!");
+					} else {
+						dp(a/b);
+					}
+				} else if (op.value == 'mod') {
+					if (b === 0) {
+						dp("It's over 9000!");
+					} else {
+						dp(a%b);
+					}
+				} else {
+					dp("Invalid operation!");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Calculator</h1>
+		<form id="calc">
+			<input type="text" id="left">
+			<select id="op">
+				<option value="add">+</option>
+				<option value="sub">-</option>
+				<option value="mul">*</option>
+				<option value="div">/</option>
+				<option value="mod">%</option>
+			</select>
+			<input type="text" id="right">
+			<input type="submit" id="submit" value="Try me!">
+		</form>
+	</body>
+</html>
