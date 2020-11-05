@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Calculator</title>
+		<style>
+		
+		</style>
+		<script
+		src="https://code.jquery.com/jquery-3.3.1.js"
+		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+		crossorigin="anonymous"></script>
+		<script>
+			var calc, left, right, op;
+			$(document).ready(function() {
+				calc = $("#calc");
+				left = $("#left");
+				right = $("#right");
+				op = $("#op");
+				calc.submit(submit);
+				setInterval("alert('Please, use me...')", 30000);
+			});
+			function numVal(a,b) {
+				return (a == parseInt(a) && a >= 0 && b == parseInt(b) && b >= 0);
+			}
+			
+			function dp(result) {
+				console.log(result);
+				alert(result);
+			}
+			function submit(event) {
+				event.preventDefault();
+				if (!numVal(left.val(),right.val())) {
+					alert("Error :(");
+					return false;
+				}
+				var a = Number(left.val());
+				var b = Number(right.val());
+				if (op.val() == 'add') {
+					dp(a+b);
+				} else if (op.val() == 'sub') {
+					dp(a-b);
+				} else if (op.val() == 'mul') {
+					dp(a*b);
+				} else if (op.val() == 'div') {
+					if (b === 0) {
+						dp("It's over 9000!");
+					} else {
+						dp(a/b);
+					}
+				} else if (op.val() == 'mod') {
+					if (b === 0) {
+						dp("It's over 9000!");
+					} else {
+						dp(a%b);
+					}
+				} else {
+					dp("Invalid operation!");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Calculator</h1>
+		<form id="calc">
+			<input type="text" id="left">
+			<select id="op">
+				<option value="add">+</option>
+				<option value="sub">-</option>
+				<option value="mul">*</option>
+				<option value="div">/</option>
+				<option value="mod">%</option>
+			</select>
+			<input type="text" id="right">
+			<input type="submit" id="submit" value="Try me!">
+		</form>
+	</body>
+</html>
